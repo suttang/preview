@@ -1,11 +1,16 @@
 var express = require('express');
+var logger = require('morgan');
+
 var app = express();
+
+app.use(logger('dev'));
 
 app.get('/', function (req, res) {
     res.send('Hello, World!');
 });
 
-app.listen(3000);
+// app.listen(3000);
+module.exports = app;
 
 /*
 var express = require('express');
