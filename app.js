@@ -1,16 +1,19 @@
 var express = require('express');
 var logger = require('morgan');
+var ECT = require('ect');
 
-var app = express();
+var app = module.exports = express();
 
+// settings for ECT
+app.set('view engine', 'ect');
+app.engine('ect', ECT({ watch: true, root: __dirname + '/views', ext: '.ect' }).render);
+
+// setting environments
 app.use(logger('dev'));
 
 app.get('/', function (req, res) {
-    res.send('Hello, World!');
+    res.render('index');
 });
-
-// app.listen(3000);
-module.exports = app;
 
 /*
 var express = require('express');
