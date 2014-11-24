@@ -7,7 +7,6 @@ var app = module.exports = express();
 // settings for ECT
 app.set('view engine', 'ect');
 app.engine('ect', ECT({ watch: true, root: __dirname + '/views', ext: '.ect' }).render);
-
 // setting environments
 app.use(morgan('dev'));
 
