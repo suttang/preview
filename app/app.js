@@ -1,5 +1,5 @@
 var express = require('express');
-var logger = require('morgan');
+var morgan = require('morgan');
 var ECT = require('ect');
 
 var app = module.exports = express();
@@ -9,10 +9,14 @@ app.set('view engine', 'ect');
 app.engine('ect', ECT({ watch: true, root: __dirname + '/views', ext: '.ect' }).render);
 
 // setting environments
-app.use(logger('dev'));
+app.use(morgan('dev'));
 
-app.get('/', function (req, res) {
+app.get('/', function(req, res) {
     res.render('index');
+});
+
+app.get('/settings/repositories', function(request, response) {
+    response.render('index');
 });
 
 /*
