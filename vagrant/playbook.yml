@@ -1,0 +1,9 @@
+---
+
+- hosts: vagrant
+  user: vagrant
+  sudo: true
+  sudo_user: root
+  roles:
+    - base
+    - node

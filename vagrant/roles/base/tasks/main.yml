@@ -1,0 +1,15 @@
+# apt更新
+- apt: update_cache=yes
+
+# aptitudeがない場合は入れる
+- apt: name=aptitude state=present
+
+# apt-get upgrade
+- apt: upgrade=full
+
+# 開発ツールのインストール
+- apt: name=build-essential state=present
+
+# コンソールの日本語化
+- apt: name=language-pack-ja state=present
+- command: update-locale LANG=ja_JP.UTF-8

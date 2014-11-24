@@ -1,0 +1,12 @@
+##
+# node.js installation
+#
+- name: Node.js | Package prerequisites for node.js
+  apt: name=python-software-properties state=present
+
+- name: Node.js | Install nodejs and npm
+  apt: name=nodejs state=present
+
+- name: Node.js | Rename command
+  command: update-alternatives --install /usr/bin/node node /usr/bin/nodejs 10
+#  alternatives: name=node path=/usr/bin/nodejs

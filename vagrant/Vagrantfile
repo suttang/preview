@@ -1,0 +1,22 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "ubuntu/trusty64"
+  config.vm.network :public_network
+  config.vm.network "forwarded_port", guest: 8000, host: 8000
+  config.vm.synced_folder "../", "/preview", owner: "vagrant", group: "vagrant"
+  config.ssh.forward_agent = true
+
+  config.vm.provider :virtualbox do |vb|
+  	vb.name = "preview-dev"
+  end
+
+  config.vm.provision :ansible do |ansible|
+    ansible.limit = "all"
+    ansible.inventory_path = "hosts"
+    ansible.playbook = "playbook.yml"
+  end
+end
