@@ -9,6 +9,7 @@ app.set('view engine', 'ect');
 app.engine('ect', ECT({ watch: true, root: __dirname + '/views', ext: '.ect' }).render);
 // setting environments
 app.use(morgan('dev'));
+app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(req, res) {
     res.render('index');
